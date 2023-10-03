@@ -1,0 +1,26 @@
+version: "3.5"
+
+name: pg-local
+services:
+  db:
+    image: postgres:14.7-alpine
+    restart: 'unless-stopped'
+    logging:
+      driver: "none"
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: root123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-db-data:/var/lib/postgresql/data
+    networks:
+      pg-network:
+        aliases:
+          - db-export.pg.local
+volumes:
+    pg-db-data:
+
+networks:
+  pg-network:
+    name: ${NETWORK_NAME}

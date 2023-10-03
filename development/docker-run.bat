@@ -15,7 +15,8 @@ if errorlevel 1 (
 )
 
 set IMAGE_TAG=latest
-set PORT=5050
+set HTTP_PORT=5050
+set HTTPS_PORT=5051
 
 docker images | findstr /C:"%IMAGE_NAME%:%IMAGE_TAG%"
 if errorlevel 1 (
@@ -24,4 +25,8 @@ if errorlevel 1 (
     echo Image %IMAGE_NAME%:%IMAGE_TAG% exists.
 )
 
-docker run -d --name %IMAGE_NAME% -p %PORT%:80 %IMAGE_NAME%
+set connectionString=Host=pg-local-db-1:5432;Username=postgres;Password=root123;Database=RestTest;
+
+docker run -d -e ASPNETCORE_ENVIRONMENT=Development -e ConnectionStrings__DefaultConnection=%connectionString% --name %IMAGE_NAME% -p %HTTPS_PORT%:443 -p %HTTP_PORT%:80 %IMAGE_NAME%
+
+docker network connect %IMAGE_NAME% %IMAGE_NAME%

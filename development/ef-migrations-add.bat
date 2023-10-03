@@ -5,6 +5,6 @@ IF "%~1"=="" (
     exit /b 1
 )
 
-cd .\src
+cd ..\src
 
 dotnet ef migrations add %1 --project .\Infrastructure\Infrastructure.csproj --startup-project .\Web\Web.csproj --output-dir Persistence\Migrations

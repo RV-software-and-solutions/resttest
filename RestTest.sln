@@ -11,10 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
-		docker-build-run.bat = docker-build-run.bat
-		ef-database-reset.bat = ef-database-reset.bat
-		ef-migrations-add.bat = ef-migrations-add.bat
-		ef-migrations-update.bat = ef-migrations-update.bat
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "src\Web\Web.csproj", "{F1AE8789-0353-4822-8D55-9EAD6BE4220E}"
@@ -31,8 +27,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.UnitTests", "te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{245F33C5-868D-44B6-8DF5-8FDF20B73BEB}"
 	ProjectSection(SolutionItems) = preProject
-		docker-build.bat = docker-build.bat
-		docker-run.bat = docker-run.bat
+		development\docker-build-run.bat = development\docker-build-run.bat
+		development\docker-build.bat = development\docker-build.bat
+		development\docker-run.bat = development\docker-run.bat
+		development\pg.bat = development\pg.bat
+		development\pg.yml = development\pg.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ef", "ef", "{D3B245C0-56F6-45CB-840F-8F9513A88934}"
+	ProjectSection(SolutionItems) = preProject
+		development\ef-database-reset.bat = development\ef-database-reset.bat
+		development\ef-migrations-add.bat = development\ef-migrations-add.bat
+		development\ef-migrations-update.bat = development\ef-migrations-update.bat
 	EndProjectSection
 EndProject
 Global
@@ -77,6 +83,7 @@ Global
 		{C1F49B1E-4EE6-4DE7-876A-59BB50864DC4} = {95FD3665-F4E4-459C-B985-B751669768DE}
 		{C0B1D051-B5D0-4106-8CED-029A7F996DEF} = {95FD3665-F4E4-459C-B985-B751669768DE}
 		{245F33C5-868D-44B6-8DF5-8FDF20B73BEB} = {2F29B13C-349A-4CAC-9EC6-56A4222C7E73}
+		{D3B245C0-56F6-45CB-840F-8F9513A88934} = {2F29B13C-349A-4CAC-9EC6-56A4222C7E73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9967AAC7-8697-4471-969A-C5EAB98569A3}
