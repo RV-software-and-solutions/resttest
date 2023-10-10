@@ -40,4 +40,3 @@ internal class CustomWebApplicationFactory : WebApplicationFactory<Program>
         });
     }
 }
-

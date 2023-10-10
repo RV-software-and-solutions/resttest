@@ -6,15 +6,17 @@ using RestTest.Application.ResourceItems.Queries.GetResourceItemsWithPagination;
 namespace Application.IntegrationTests.ResourceItems.Queries;
 
 [ExcludeFromCodeCoverage]
-public class GetResourceItemsWihtPaginationTests : BaseTesting
+public class GetResourceItemsWithPaginationTests : BaseTesting
 {
     [Test]
     public async Task Shoud()
     {
         await RunAsDefaultUserAsync();
 
-        var query = new GetResourceItemsWithPaginationQuery();
-        query.Title = "todo";
+        var query = new GetResourceItemsWithPaginationQuery
+        {
+            Title = "todo"
+        };
 
         var result = await SendAsync(query);
 

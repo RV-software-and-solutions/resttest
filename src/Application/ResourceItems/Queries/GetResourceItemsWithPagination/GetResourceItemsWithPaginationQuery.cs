@@ -23,12 +23,13 @@ public class GetResourceItemsWithPaginationQueryHandler : IRequestHandler<GetRes
         _context = context;
         _mapper = mapper;
     }
-    public async Task<PaginatedList<ResourceItemDto>> Handle(GetResourceItemsWithPaginationQuery request, CancellationToken cancellationToken)
+
+    public async Task<PaginatedList<ResourceItemDto>> Handle(GetResourceItemsWithPaginationQuery query, CancellationToken cancellationToken)
     {
         return await _context.ResourceItems
-            .Where(x => x.Title.ToLower().Contains(request.Title.ToLower()))
+            .Where(x => x.Title.Contains(query.Title, StringComparison.OrdinalIgnoreCase))
             .OrderBy(x => x.Title)
             .ProjectTo<ResourceItemDto>(_mapper.ConfigurationProvider)
-            .PaginatedListAsync(request.PageNumber, request.PageSize);
+            .PaginatedListAsync(query.PageNumber, query.PageSize);
     }
 }
