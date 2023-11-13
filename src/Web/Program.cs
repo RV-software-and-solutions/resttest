@@ -1,16 +1,20 @@
 using RestTest.Application;
+using RestTest.Core;
 using RestTest.Infrastructure;
 using RestTest.Infrastructure.Persistence;
 using RestTest.Web;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddApplicationServices();
-builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddWebUIServices();
+builder.Services
+    .AddOptions()
+    .AddCoreServices(builder.Configuration)
+    .AddApplicationServices()
+    .AddInfrastructureServices(builder.Configuration)
+    .AddWebUIServices();
 
 var app = builder.Build();
 

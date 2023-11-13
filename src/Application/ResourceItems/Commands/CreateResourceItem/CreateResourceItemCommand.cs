@@ -21,7 +21,7 @@ public class CreateResourceItemCommandHandler : IRequestHandler<CreateResourceIt
 
     public async Task<int> Handle(CreateResourceItemCommand request, CancellationToken cancellationToken)
     {
-        var entity = new ResourceItem
+        ResourceItem entity = new()
         {
             Title = request.Title,
             Location = request.Location,

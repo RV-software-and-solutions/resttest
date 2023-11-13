@@ -34,8 +34,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="superfilelocation\**" />
+		<Compile Remove="superfilelocation\**" />
+		<EmbeddedResource Remove="superfilelocation\**" />
+		<None Remove="superfilelocation\**" />
+	</ItemGroup>
 
     <PropertyGroup>
 	    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>

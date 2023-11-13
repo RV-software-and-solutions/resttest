@@ -6,6 +6,35 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/File": {
+      "post": {
+        "tags": [
+          "File"
+        ],
+        "operationId": "File_Upload",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Image": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/api/ResourceItems": {
       "get": {
         "tags": [
