@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RestTest.Application.Common.Models;
 using RestTest.Application.ResourceItems.Commands.CreateResourceItem;
 using RestTest.Application.ResourceItems.Queries.GetResourceItemsWithPagination;
 
 namespace RestTest.Web.Controllers;
 
-//[Authorize]
+[Authorize]
 public class ResourceItemsController : ApiControllerBase
 {
     [HttpGet]

@@ -9,14 +9,16 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
 builder.Services
     .AddOptions()
     .AddCoreServices(builder.Configuration)
+    .AddAwsCognitoAuthentication(builder.Configuration)
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration)
     .AddWebUIServices();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

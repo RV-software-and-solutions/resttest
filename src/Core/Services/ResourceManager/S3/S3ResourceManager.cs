@@ -3,7 +3,7 @@ using Amazon;
 using Amazon.S3;
 using Amazon.S3.Model;
 using Microsoft.Extensions.Options;
-using RestTest.Core.Services.ResourceManager.Configuration;
+using RestTest.Core.Configuration;
 using RestTest.Core.Services.ResourceManager.Core;
 
 namespace RestTest.Core.Services.ResourceManager.S3;

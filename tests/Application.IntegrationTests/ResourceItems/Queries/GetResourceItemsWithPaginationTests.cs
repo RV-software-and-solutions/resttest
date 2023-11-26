@@ -9,7 +9,7 @@ namespace Application.IntegrationTests.ResourceItems.Queries;
 public class GetResourceItemsWithPaginationTests : BaseTesting
 {
     [Test]
-    public async Task Shoud()
+    public async Task SendAsync_Should_NotBeEmpty()
     {
         await RunAsDefaultUserAsync();
 

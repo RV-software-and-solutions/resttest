@@ -4,11 +4,7 @@ using RestTest.Domain.Entities;
 using RestTest.Domain.Events;
 
 namespace RestTest.Application.ResourceItems.Commands.CreateResourceItem;
-public record CreateResourceItemCommand : IRequest<int>
-{
-    public required string Title { get; init; }
-    public required string Location { get; init; }
-}
+public record CreateResourceItemCommand(string Title, string Location) : IRequest<int>;
 
 public class CreateResourceItemCommandHandler : IRequestHandler<CreateResourceItemCommand, int>
 {

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using NSwag;
 using NSwag.Generation.Processors.Security;
 using RestTest.Application.Common.Interfaces;
@@ -51,6 +54,38 @@ public static class ConfigureServices
 
             configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
         });
+
+        return services;
+    }
+
+    public static IServiceCollection AddAwsCognitoAuthentication(this IServiceCollection services, IConfiguration configuration)
+    {
+        IConfigurationSection awsCognitoConfigSection = configuration.GetSection("aws").GetSection("cognito");
+        services
+          .AddAuthentication(options =>
+          {
+              options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+              options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+          })
+          .AddJwtBearer(options =>
+          {
+              options.SaveToken = true;
+              options.TokenValidationParameters = new TokenValidationParameters
+              {
+                  ValidateIssuerSigningKey = true,
+                  IssuerSigningKeyResolver = (s, securityToken, identifier, parameters) =>
+                  {
+                      var json = new HttpClient().GetStringAsync(parameters.ValidIssuer + "/.well-known/jwks.json").Result;
+                      return JsonConvert.DeserializeObject<JsonWebKeySet>(json)!.Keys;
+                  },
+                  ValidateIssuer = true,
+                  ValidIssuer = $"https://cognito-idp.{awsCognitoConfigSection["Region"]}.amazonaws.com/{awsCognitoConfigSection["UserPoolId"]}",
+                  ValidateLifetime = true,
+                  LifetimeValidator = (before, expires, token, param) => expires > DateTime.UtcNow,
+                  ValidateAudience = true,
+                  ValidAudience = awsCognitoConfigSection["UserPoolClientId"],
+              };
+          });
 
         return services;
     }
