@@ -13,5 +13,4 @@ public abstract class ExtendAbstractValidator<T> : AbstractValidator<T>
 
         return this;
     }
-
 }

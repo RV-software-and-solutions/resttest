@@ -1,6 +1,5 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Web.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using RestTest.Web.Filters;
 
 namespace RestTest.Web.Controllers;
 

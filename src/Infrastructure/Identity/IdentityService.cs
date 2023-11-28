@@ -1,8 +1,8 @@
-﻿using Application.Common.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RestTest.Application.Common.Models;
+using RestTest.Application.Common.Interfaces;
 
 namespace RestTest.Infrastructure.Identity;
 public class IdentityService : IIdentityService

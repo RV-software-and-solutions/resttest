@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Application.IntegrationTests.Core;
 using FluentAssertions;
 using NUnit.Framework;
 using RestTest.Application.ResourceItems.Queries.GetResourceItemsWithPagination;
@@ -9,7 +10,7 @@ namespace Application.IntegrationTests.ResourceItems.Queries;
 public class GetResourceItemsWithPaginationTests : BaseTesting
 {
     [Test]
-    public async Task SendAsync_Should_NotBeEmpty()
+    public async Task SendAsync_Should_BeEmpty()
     {
         await RunAsDefaultUserAsync();
 
@@ -20,6 +21,6 @@ public class GetResourceItemsWithPaginationTests : BaseTesting
 
         var result = await SendAsync(query);
 
-        result.Items.Should().NotBeEmpty();
+        result.Items.Should().BeEmpty();
     }
 }

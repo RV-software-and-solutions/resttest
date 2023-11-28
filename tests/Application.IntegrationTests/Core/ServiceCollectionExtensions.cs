@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.IntegrationTests;
+namespace Application.IntegrationTests.Core;
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection ApplyMigrations<TContext>(this IServiceCollection services)

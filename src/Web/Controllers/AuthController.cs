@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestTest.Application.Auth.Commands.LoginUser;
-using RestTest.Application.Auth.Commands.SignupUser;
+using RestTest.Application.Auth.Commands.SignUpUser;
 using RestTest.Domain.Dtos.Auth;
-using RestTest.Web.Models.Requests;
 using RestTest.Web.Models.Requests.Auth;
 using RestTest.Web.Models.Views.Auth;
 

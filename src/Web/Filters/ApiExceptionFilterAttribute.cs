@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using RestTest.Application.Common.Exceptions;
 using ValidationException = RestTest.Application.Common.Exceptions.ValidationException;
 
-namespace Web.Filters;
+namespace RestTest.Web.Filters;
 
 public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
 {

@@ -1,4 +1,5 @@
-﻿namespace RestTest.Web.Models.Requests;
+﻿using RestTest.Web.Models.Requests;
+namespace RestTest.Web.Models.Requests.Auth;
 
 public class UserLoginRequest
 {

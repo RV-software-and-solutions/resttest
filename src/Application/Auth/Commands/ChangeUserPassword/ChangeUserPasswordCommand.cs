@@ -1,10 +1,10 @@
 ﻿using Amazon.CognitoIdentityProvider.Model;
 using Amazon.Extensions.CognitoAuthentication;
-using MediatR;
 using RestTest.Core.Services.AwsCognito;
 using RestTest.Domain.Dtos.Auth;
+using RestTest.Application.Auth.Commands.ChangeUserPassword;
 
-namespace RestTest.Application.Auth.Commands.ChangePassword;
+namespace RestTest.Application.Auth.Commands.ChangeUserPassword;
 public record ChangeUserPasswordCommand(string CurrentPassword, string EmailAddress, string NewPassword) : IRequest<ChangeUserPasswordResponseDto>;
 
 public class ChangeUserPasswordCommandHandler : IRequestHandler<ChangeUserPasswordCommand, ChangeUserPasswordResponseDto>
@@ -26,14 +26,14 @@ public class ChangeUserPasswordCommandHandler : IRequestHandler<ChangeUserPasswo
             PreviousPassword = request.CurrentPassword,
             ProposedPassword = request.NewPassword
         };
-        ChangePasswordResponse response = await _awsCognitoService.CognitoIdentityProviderClient.ChangePasswordAsync(changePasswordRequest);
+        ChangePasswordResponse response = await _awsCognitoService.CognitoIdentityProviderClient.ChangePasswordAsync(changePasswordRequest, cancellationToken);
         return new ChangeUserPasswordResponseDto { UserId = tokenResponse.Item1.Username, Message = "Password Changed", IsSuccess = true };
     }
 
     private async Task<Tuple<CognitoUser, AuthenticationResultType>> AuthenticateUserAsync(string emailAddress, string password)
     {
-        CognitoUser user = new CognitoUser(emailAddress, _awsCognitoService.Configuration.UserPoolClientId, _awsCognitoService.CognitoUserPool, _awsCognitoService.CognitoIdentityProviderClient);
-        InitiateSrpAuthRequest authRequest = new InitiateSrpAuthRequest()
+        CognitoUser user = new(emailAddress, _awsCognitoService.Configuration.UserPoolClientId, _awsCognitoService.CognitoUserPool, _awsCognitoService.CognitoIdentityProviderClient);
+        InitiateSrpAuthRequest authRequest = new()
         {
             Password = password
         };

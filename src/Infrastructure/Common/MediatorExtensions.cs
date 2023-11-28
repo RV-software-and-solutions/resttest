@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestTest.Domain.Common;
 
-namespace MediatR;
+namespace RestTest.Infrastructure.Common;
 
 public static class MediatorExtensions
 {

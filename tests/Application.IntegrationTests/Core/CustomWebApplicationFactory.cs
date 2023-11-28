@@ -7,8 +7,8 @@ using Moq;
 using RestTest.Application.Common.Interfaces;
 using RestTest.Infrastructure.Persistence;
 
-namespace Application.IntegrationTests;
-internal class CustomWebApplicationFactory : WebApplicationFactory<Program>
+namespace Application.IntegrationTests.Core;
+public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {

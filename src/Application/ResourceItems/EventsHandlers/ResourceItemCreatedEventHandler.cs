@@ -1,7 +1,6 @@
-﻿using MediatR;
-using RestTest.Domain.Events;
+﻿using RestTest.Domain.Events;
 
-namespace RestTest.Application.ResourceItems.EventsHandler;
+namespace RestTest.Application.ResourceItems.EventsHandlers;
 public class ResourceItemCreatedEventHandler : INotificationHandler<ResourceItemCreatedEvent>
 {
     public async Task Handle(ResourceItemCreatedEvent notification, CancellationToken cancellationToken)

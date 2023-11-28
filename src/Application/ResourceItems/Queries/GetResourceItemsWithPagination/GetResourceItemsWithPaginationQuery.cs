@@ -27,7 +27,7 @@ public class GetResourceItemsWithPaginationQueryHandler : IRequestHandler<GetRes
     public async Task<PaginatedList<ResourceItemDto>> Handle(GetResourceItemsWithPaginationQuery query, CancellationToken cancellationToken)
     {
         return await _context.ResourceItems
-            .Where(x => x.Title.Contains(query.Title, StringComparison.OrdinalIgnoreCase))
+            .Where(x => x.Title == query.Title)
             .OrderBy(x => x.Title)
             .ProjectTo<ResourceItemDto>(_mapper.ConfigurationProvider)
             .PaginatedListAsync(query.PageNumber, query.PageSize);

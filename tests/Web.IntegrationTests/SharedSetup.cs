@@ -1,9 +1,9 @@
-﻿using Application.IntegrationTests;
-using Microsoft.Extensions.DependencyInjection;
-using NUnit.Framework;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Web.IntegrationTests.Core;
+
+namespace Web.IntegrationTests;
 
 // This class should not have namespace, so it can be applied to all tests. That is how NUnit works
-#pragma warning disable CA1050 // Declare types in namespaces
 [SetUpFixture]
 // ReSharper disable once CheckNamespace
 public class SharedSetup

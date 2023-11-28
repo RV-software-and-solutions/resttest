@@ -1,5 +1,4 @@
-﻿using MediatR;
-using RestTest.Application.Common.Models;
+﻿using RestTest.Application.Common.Models;
 using RestTest.Core.Services.ConfigurationManager;
 using RestTest.Core.Services.ConfigurationManager.ParameterStore;
 using RestTest.Core.Services.ResourceManager.Core;

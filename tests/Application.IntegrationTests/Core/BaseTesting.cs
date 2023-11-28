@@ -6,7 +6,7 @@ using NUnit.Framework;
 using RestTest.Infrastructure.Identity;
 using RestTest.Infrastructure.Persistence;
 
-namespace Application.IntegrationTests;
+namespace Application.IntegrationTests.Core;
 
 [TestFixture]
 public abstract class BaseTesting

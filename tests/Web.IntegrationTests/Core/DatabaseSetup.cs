@@ -3,7 +3,7 @@ using Npgsql;
 using Respawn;
 using Testcontainers.PostgreSql;
 
-namespace Application.IntegrationTests;
+namespace Web.IntegrationTests.Core;
 
 public class DatabaseSetup
 {
@@ -16,7 +16,7 @@ public class DatabaseSetup
     {
         _dbContainer =
             new PostgreSqlBuilder()
-                .WithDatabase("postgres-integration-tests")
+                .WithDatabase("postgres-web-integration-tests")
                 .WithUsername("postgres")
                 .WithPassword("root123")
                 .WithPortBinding("5454", "5432")

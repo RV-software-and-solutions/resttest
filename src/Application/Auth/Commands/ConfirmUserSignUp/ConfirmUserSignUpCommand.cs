@@ -3,7 +3,7 @@ using MediatR;
 using RestTest.Core.Services.AwsCognito;
 using RestTest.Domain.Dtos.Auth;
 
-namespace RestTest.Application.Auth.Commands.ConfirmUserSignUo;
+namespace RestTest.Application.Auth.Commands.ConfirmUserSignUp;
 
 public record ConfirmUserSignUpCommand(string ConfirmationCode, string EmailAddress, string UserId) : IRequest<SignUpUserResponseDto>;
 

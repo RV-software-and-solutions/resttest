@@ -1,5 +1,4 @@
-﻿using Application.Common.Interfaces;
-using MediatR.Pipeline;
+﻿using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 using RestTest.Application.Common.Interfaces;
 

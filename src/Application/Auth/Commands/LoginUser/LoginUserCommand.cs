@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using Amazon.CognitoIdentityProvider.Model;
 using Amazon.Extensions.CognitoAuthentication;
-using MediatR;
 using RestTest.Core.Services.AwsCognito;
 using RestTest.Domain.Dtos.Auth;
 using RestTest.Domain.Enums.Auth;
@@ -99,6 +98,12 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, AuthRes
                 Message = "Incorrect username or password"
             };
         }
+
+        return new AuthResponseDto
+        {
+            IsSuccess = false,
+            Message = "Incorrect username or password"
+        };
     }
 
     private async Task<ListUsersResponse> FindUsersByEmailAddress(string emailAddress)

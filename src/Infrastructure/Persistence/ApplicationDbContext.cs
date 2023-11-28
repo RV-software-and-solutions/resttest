@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Duende.IdentityServer.EntityFramework.Options;
-using MediatR;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -8,6 +7,7 @@ using RestTest.Application.Common.Interfaces;
 using RestTest.Domain.Entities;
 using RestTest.Infrastructure.Identity;
 using RestTest.Infrastructure.Persistence.Interceptors;
+using RestTest.Infrastructure.Common;
 
 namespace RestTest.Infrastructure.Persistence;
 public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext

@@ -2,16 +2,16 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
-using NUnit.Framework;
 using RestTest.Infrastructure.Identity;
 using RestTest.Infrastructure.Persistence;
 
-namespace Application.IntegrationTests;
+namespace Web.IntegrationTests.Core;
 
 [TestFixture]
 public abstract class BaseTesting
 {
     private static DatabaseSetup DatabaseSetup => SharedSetup.DatabaseSetup;
+    protected static HttpClient Client => SharedSetup.Client;
 
     public static async Task<TResponse> SendAsync<TResponse>(IRequest<TResponse> request)
     {

@@ -195,13 +195,16 @@
         "additionalProperties": false,
         "properties": {
           "userName": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "password": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "emailAddress": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         }
       },

@@ -1,6 +1,6 @@
 ﻿using RestTest.Application.Common.Models;
 
-namespace Application.Common.Interfaces;
+namespace RestTest.Application.Common.Interfaces;
 public interface IIdentityService
 {
     Task<string?> GetUserNameAsync(string userId);

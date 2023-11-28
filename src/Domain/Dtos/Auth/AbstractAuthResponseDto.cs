@@ -7,5 +7,4 @@ public abstract class AbstractAuthResponseDto
     public bool IsSuccess { get; set; }
     public string? EmailAddress { get; set; }
     public CognitoStatusCodes? Status { get; set; }
-
 }

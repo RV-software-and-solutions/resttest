@@ -3,7 +3,7 @@ using Npgsql;
 using Respawn;
 using Testcontainers.PostgreSql;
 
-namespace Application.IntegrationTests;
+namespace Application.IntegrationTests.Core;
 
 public class DatabaseSetup
 {

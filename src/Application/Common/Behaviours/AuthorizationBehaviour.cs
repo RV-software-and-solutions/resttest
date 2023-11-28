@@ -1,6 +1,4 @@
 ﻿using System.Reflection;
-using Application.Common.Interfaces;
-using MediatR;
 using RestTest.Application.Common.Exceptions;
 using RestTest.Application.Common.Interfaces;
 using RestTest.Application.Common.Security;
