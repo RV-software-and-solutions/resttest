@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{791ED9DC-C
 	ProjectSection(SolutionItems) = preProject
 		development\integration-tests.bat = development\integration-tests.bat
 		development\unit-tests.bat = development\unit-tests.bat
-		unit-tests.sh = unit-tests.sh
+		development\unit-tests.sh = development\unit-tests.sh
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "src\Core\Core.csproj", "{D2D51EA5-AFCF-44E6-941F-2B52716B41D2}"
@@ -57,7 +57,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{E20E6E72-0624-4774-AFC5-2552D0A52180}"
 	ProjectSection(SolutionItems) = preProject
 		build.bat = build.bat
-		build.sh = build.sh
+		development\build.sh = development\build.sh
 	EndProjectSection
 EndProject
 Global

@@ -2,7 +2,6 @@
 using Amazon.Extensions.CognitoAuthentication;
 using RestTest.Core.Services.AwsCognito;
 using RestTest.Domain.Dtos.Auth;
-using RestTest.Application.Auth.Commands.ChangeUserPassword;
 
 namespace RestTest.Application.Auth.Commands.ChangeUserPassword;
 public record ChangeUserPasswordCommand(string CurrentPassword, string EmailAddress, string NewPassword) : IRequest<ChangeUserPasswordResponseDto>;
@@ -18,13 +17,13 @@ public class ChangeUserPasswordCommandHandler : IRequestHandler<ChangeUserPasswo
 
     public async Task<ChangeUserPasswordResponseDto> Handle(ChangeUserPasswordCommand request, CancellationToken cancellationToken)
     {
-        var tokenResponse = await AuthenticateUserAsync(request.EmailAddress, request.CurrentPassword);
+        Tuple<CognitoUser, AuthenticationResultType> tokenResponse = await AuthenticateUserAsync(request.EmailAddress, request.CurrentPassword);
 
         ChangePasswordRequest changePasswordRequest = new()
         {
             AccessToken = tokenResponse.Item2.AccessToken,
             PreviousPassword = request.CurrentPassword,
-            ProposedPassword = request.NewPassword
+            ProposedPassword = request.NewPassword,
         };
         ChangePasswordResponse response = await _awsCognitoService.CognitoIdentityProviderClient.ChangePasswordAsync(changePasswordRequest, cancellationToken);
         return new ChangeUserPasswordResponseDto { UserId = tokenResponse.Item1.Username, Message = "Password Changed", IsSuccess = true };
