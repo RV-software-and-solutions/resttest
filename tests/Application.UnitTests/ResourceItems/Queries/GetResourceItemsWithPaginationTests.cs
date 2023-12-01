@@ -35,7 +35,7 @@ public class GetResourceItemsWithPaginationTests
         //arrange
         var resourceItems = new List<ResourceItem>()
         {
-            new ResourceItem() { Id = 1, Location = "test location", Title = "Super title"}
+            new ResourceItem() { Id = 1, Location = "test location", Title = "title"}
         };
         _mockContext.Setup(ri => ri.ResourceItems).Returns(resourceItems.AsQueryable().BuildMockDbSet().Object);
 

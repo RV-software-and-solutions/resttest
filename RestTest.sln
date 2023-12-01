@@ -47,11 +47,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{791ED9DC-C
 	ProjectSection(SolutionItems) = preProject
 		development\integration-tests.bat = development\integration-tests.bat
 		development\unit-tests.bat = development\unit-tests.bat
+		unit-tests.sh = unit-tests.sh
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "src\Core\Core.csproj", "{D2D51EA5-AFCF-44E6-941F-2B52716B41D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.IntegrationTests", "tests\Web.IntegrationTests\Web.IntegrationTests.csproj", "{0C22E35C-B96F-4A4D-BAF9-646E1F3BAD9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.IntegrationTests", "tests\Web.IntegrationTests\Web.IntegrationTests.csproj", "{0C22E35C-B96F-4A4D-BAF9-646E1F3BAD9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{E20E6E72-0624-4774-AFC5-2552D0A52180}"
+	ProjectSection(SolutionItems) = preProject
+		build.bat = build.bat
+		build.sh = build.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,6 +119,7 @@ Global
 		{791ED9DC-CF48-406B-BDDF-78ADFA09E23A} = {2F29B13C-349A-4CAC-9EC6-56A4222C7E73}
 		{D2D51EA5-AFCF-44E6-941F-2B52716B41D2} = {B7D64A44-34E1-47A6-8A05-896BC94B8D33}
 		{0C22E35C-B96F-4A4D-BAF9-646E1F3BAD9F} = {95FD3665-F4E4-459C-B985-B751669768DE}
+		{E20E6E72-0624-4774-AFC5-2552D0A52180} = {2F29B13C-349A-4CAC-9EC6-56A4222C7E73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9967AAC7-8697-4471-969A-C5EAB98569A3}
