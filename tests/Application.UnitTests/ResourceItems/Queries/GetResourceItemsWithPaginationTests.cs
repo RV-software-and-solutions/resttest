@@ -5,6 +5,7 @@ using NUnit.Framework;
 using RestTest.Application.Common.Interfaces;
 using RestTest.Application.Common.Mappings;
 using RestTest.Application.Common.Models;
+using RestTest.Application.ResourceItems.Dtos;
 using RestTest.Application.ResourceItems.Queries.GetResourceItemsWithPagination;
 using RestTest.Domain.Entities;
 

@@ -4,6 +4,7 @@ using RestTest.Core.Attributes;
 using RestTest.Core.Configuration;
 using RestTest.Core.Services.AwsCognito;
 using RestTest.Core.Services.ConfigurationManager.ParameterStore;
+using RestTest.Core.Services.Graph;
 using RestTest.Core.Services.ResourceManager.Core;
 using RestTest.Core.Services.ResourceManager.FileManager;
 using RestTest.Core.Services.ResourceManager.S3;
@@ -19,6 +20,7 @@ public static class ConfigureServices
         services.AddTransient<IResourceManager<S3Resource>, S3ResourceManager>();
 
         services.AddSingleton<IAwsParameterStoreManager, AwsParameterStoreManager>();
+        services.AddTransient(typeof(IGraphService<,>), typeof(GraphService<,>));
 
         return services;
     }

@@ -2,11 +2,21 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using RestTest.Application.Common.Behaviours;
+using RestTest.Application.Services;
 
 namespace RestTest.Application;
 public static class ConfigureServices
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    {
+        services.AddBasicConfigruation();
+
+        services.AddSingleton<ISynonymService, SynonymService>();
+
+        return services;
+    }
+
+    private static IServiceCollection AddBasicConfigruation(this IServiceCollection services)
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

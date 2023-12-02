@@ -15,8 +15,5 @@ public class FileController : ApiControllerBase
     }
 
     private static UploadImageCommand ToCommand([FromBody] UploadFileRequestModel uploadFileModel)
-        => new()
-        {
-            Image = uploadFileModel.Image.OpenReadStream(),
-        };
+        => new(uploadFileModel.Image.OpenReadStream());
 }

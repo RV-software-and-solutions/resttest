@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using MediatR;
 using RestTest.Application.Common.Interfaces;
 using RestTest.Application.Common.Mappings;
 using RestTest.Application.Common.Models;
+using RestTest.Application.ResourceItems.Dtos;
 
 namespace RestTest.Application.ResourceItems.Queries.GetResourceItemsWithPagination;
 public record GetResourceItemsWithPaginationQuery : IRequest<PaginatedList<ResourceItemDto>>

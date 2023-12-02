@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RestTest.Application.Common.Models;
 using RestTest.Application.ResourceItems.Commands.CreateResourceItem;
+using RestTest.Application.ResourceItems.Dtos;
 using RestTest.Application.ResourceItems.Queries.GetResourceItemsWithPagination;
 
 namespace RestTest.Web.Controllers;

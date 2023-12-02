@@ -6,10 +6,7 @@ using RestTest.Core.Services.ResourceManager.FileManager;
 using RestTest.Core.Services.ResourceManager.S3;
 
 namespace RestTest.Application.ResourceItems.Commands.UploadImage;
-public class UploadImageCommand : IRequest
-{
-    public required Stream Image { get; set; }
-}
+public record UploadImageCommand(Stream Image) : IRequest;
 
 public class UploadImageCommandHandler : IRequestHandler<UploadImageCommand>
 {
@@ -31,11 +28,11 @@ public class UploadImageCommandHandler : IRequestHandler<UploadImageCommand>
     {
         using Stream imageStream = new MemoryStream();
         await request.Image.CopyToAsync(imageStream, cancellationToken);
-        //bool uploadOperation = await _s3ResourceManager.Write(request.Image, GetNewImagePath());
-        //if (!uploadOperation)
-        //{
-        //    Result.Failure(new[] { "" });
-        //}
+        bool uploadOperation = await _s3ResourceManager.Write(request.Image, GetNewImagePath());
+        if (!uploadOperation)
+        {
+            Result.Failure(new[] { "" });
+        }
 
         bool saveOperation = await _fileResourceManager.Write(imageStream, GetNewImageLocalPath());
         if (!saveOperation)
