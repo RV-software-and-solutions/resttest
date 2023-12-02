@@ -5,11 +5,6 @@ public abstract class AbstractVertex<T>
     public List<AbstractVertex<T>> Adjacent { get; set; }
     public bool Visited { get; set; }
 
-    public AbstractVertex(T value)
-    {
-        InitVertex(value);
-    }
-
     public virtual AbstractVertex<T> InitVertex(T value)
     {
         Value = value;

@@ -20,7 +20,7 @@ public static class ConfigureServices
         services.AddTransient<IResourceManager<S3Resource>, S3ResourceManager>();
 
         services.AddSingleton<IAwsParameterStoreManager, AwsParameterStoreManager>();
-        services.AddTransient(typeof(IGraphService<,>), typeof(GraphService<,>));
+        services.AddSingleton(typeof(IGraphService<,>), typeof(GraphService<,>));
 
         return services;
     }

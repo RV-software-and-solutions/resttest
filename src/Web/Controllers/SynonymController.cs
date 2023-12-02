@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestTest.Application.Synonyms.Commands;
 using RestTest.Application.Synonyms.Dtos;
 using RestTest.Application.Synonyms.Queries.GetSynonymsByWord;
 using RestTest.Web.Models.Requests.Synonym;
@@ -18,9 +19,9 @@ public class SynonymController : ApiControllerBase
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult> AddSynonym(AddNewSynonymRequest command)
+    public async Task<ActionResult> AddSynonym(AddNewSynonymRequest request)
     {
-        await Mediator.Send(command);
+        await Mediator.Send(new AddNewSynonymCommand(request.SynonymFrom, request.SynonymTo));
         return Ok();
     }
 }
