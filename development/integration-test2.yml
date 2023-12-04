@@ -1,0 +1,32 @@
+version: 0.2
+env:
+  variables:
+    #VERSION: "1.0"
+    IMAGE_REPO_NAME: "payment"
+    AWS_ACCOUNT_ID: "877859816718"
+    AWS_DEFAULT_REGION: "eu-central-1"
+    START_DIR: "tests"
+    TARGET_TEST: "Ingertaion"
+
+phases:
+  install:
+    commands:
+      - /usr/local/bin/dotnet-install.sh --channel STS
+
+  pre_build:
+    commands:
+      - echo "Starting ******* INTEGRATION ****** test"
+  
+  build:
+    commands:
+      - echo "Running Integration without script build"
+      - ls -la
+      - find ${START_DIR} -type d -name "*${TARGET_TEST}Tests*" | while read -r testDir; do
+        echo "$testDir"
+        dotnet test "$testDir" --collect:"XPlat Code Coverage"
+        done
+      
+  post_build: 
+    commands:
+      - echo "Integration test complited"
+
