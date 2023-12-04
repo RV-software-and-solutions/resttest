@@ -24,7 +24,7 @@ phases:
       - find ${START_DIR} -type d -name "*${TARGET_TEST}Tests*" | while read -r testDir; 
           do
             echo "$testDir" 
-            dotnet test "$testDir" --collect:"XPlat Code Coverage" && \
+            dotnet test "$testDir" --collect:"XPlat Code Coverage" 
           done
       
   post_build: 
