@@ -3,7 +3,7 @@
 
 # Set the start directory
 startDir="tests"
-cd "$startDir" || exit 1
+#cd "$startDir" || exit 1
 
 targetTest="Unit"
 
