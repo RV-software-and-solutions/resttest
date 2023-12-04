@@ -5,8 +5,7 @@ env:
     IMAGE_REPO_NAME: "payment"
     AWS_ACCOUNT_ID: "877859816718"
     AWS_DEFAULT_REGION: "eu-central-1"
-  parameter-store:
-    image_tag: "image_tag_payment"
+
 phases:
 
   pre_build:
