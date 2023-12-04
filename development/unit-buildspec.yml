@@ -16,6 +16,7 @@ phases:
     commands:
       - echo "Running unit-test.sh"
       - chmod -R u+x development
+      - ls -la
       - ./development/unit-tests.sh
       
   post_build: 
