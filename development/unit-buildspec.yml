@@ -7,6 +7,9 @@ env:
     AWS_DEFAULT_REGION: "eu-central-1"
 
 phases:
+  install:
+    commands:
+      - /usr/local/bin/dotnet-install.sh --channel STS
 
   pre_build:
     commands:
