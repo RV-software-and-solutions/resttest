@@ -10,14 +10,14 @@ phases:
 
   pre_build:
     commands:
-      - echo Starting UNIT test's
+      - echo "Starting UNIT test"
   
   build:
     commands:
-      - echo Running unit-test.sh
+      - echo "Running unit-test.sh"
       - ./unit-tests.sh  
       
   post_build: 
     commands:
-      - echo Unit test complited
+      - echo "Unit test complited"
 
