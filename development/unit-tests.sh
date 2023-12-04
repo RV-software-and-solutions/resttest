@@ -8,7 +8,7 @@ cd "$startDir" || exit 1
 targetTest="Unit"
 
 # Use find command to recursively search for folders containing "UnitTests"
-find "$startDir" -type d -name "*${targetTest}Tests*" | while read -r testDir; do
+find $startDir -type d -name "*${targetTest}Tests*" | while read -r testDir; do
     echo "$testDir"
     dotnet test "$testDir" --collect:"XPlat Code Coverage"
 done
