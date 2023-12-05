@@ -7,8 +7,8 @@ env:
     AWS_DEFAULT_REGION: "eu-central-1"
     image_tag: "0"
   parameter-store:
-    version: image_tag_v
-    patch:   image_tag_p
+    tag_version: image_tag_v
+    tag_patch:   image_tag_p
     
 
 phases:
@@ -24,12 +24,13 @@ phases:
   
   build:
     commands:
-      - patch=$((patch+1))
-      - image_tag=$version.$patch
+      - tag_patch=$((tag_patch+1))
+      - image_tag=$tag_version.$tag_patch
       - echo "IMAGE TAG IS " $image_tag
       - cd src/Web/
       - pwd
-      - docker build -t $IMAGE_REPO_NAME:$image_tag .
+      - ls -la
+      - docker build -t $IMAGE_REPO_NAME:$tag_patch .
       - printf '[{"name":"$IMAGE_REPO_NAME","imageUri":"%s"}]'  $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag  > imageDetail.json
       - cat imageDetail.json
 
