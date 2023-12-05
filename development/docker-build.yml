@@ -8,7 +8,7 @@ env:
     image_tag: "0"
   parameter-store:
     tag_version: image_tag_v
-    tag_patch:   image_tag_p
+    TAG_PATCH:   image_tag_p
     
 
 phases:
@@ -24,26 +24,24 @@ phases:
   
   build:
     commands:
-      - tag_patch=$((tag_patch+1))
-      - image_tag=$tag_patch
-      - echo IMAGE TAG IS 0000$image_tag
+      - TAG_PATCH=$((TAG_PATCH+1))
       - pwd
       - cd src/
       - ls -la
-      - docker build -t $IMAGE_REPO_NAME:$image_tag -f Web/Dockerfile .
-      - printf '[{"name":"$IMAGE_REPO_NAME","imageUri":"%s"}]'  $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag  > imageDetail.json
+      - docker build -t $IMAGE_REPO_NAME:$TAG_PATCH -f Web/Dockerfile .
+      - printf '[{"name":"$IMAGE_REPO_NAME","imageUri":"%s"}]'  $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$TAG_PATCH  > imageDetail.json
       - cat imageDetail.json
 
   post_build: 
     commands:
       - echo "Docker build complited"          
       - echo Docker tag
-      - docker tag $IMAGE_REPO_NAME:$image_tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag
+      - docker tag $IMAGE_REPO_NAME:$TAG_PATCH $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$TAG_PATCH
       - docker images
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:${image_tag}
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$TAG_PATCH
       #store new image tag number in ssm 
-      - aws ssm put-parameter --name image_tag_p --type String --value ${tag_patch} --overwrite      
+      - aws ssm put-parameter --name image_tag_p --type String --value ${TAG_PATCH} --overwrite      
 
 artifacts:
     files: 
