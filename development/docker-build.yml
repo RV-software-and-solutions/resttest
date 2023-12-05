@@ -29,7 +29,7 @@ phases:
       - echo "IMAGE TAG IS  ${image_tag}"
       - pwd
       - ls -la
-      - docker build -t $IMAGE_REPO_NAME:$tag_patch -f Web/Dockerfile .
+      - docker build -t $IMAGE_REPO_NAME:$tag_patch -f Web/Dockerfile/ .
       - printf '[{"name":"$IMAGE_REPO_NAME","imageUri":"%s"}]'  $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag  > imageDetail.json
       - cat imageDetail.json
 
