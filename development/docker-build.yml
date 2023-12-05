@@ -5,10 +5,10 @@ env:
     IMAGE_REPO_NAME: "resttest"
     AWS_ACCOUNT_ID: "877859816718"
     AWS_DEFAULT_REGION: "eu-central-1"
-    
+    TAG_PATCH: "0"
   parameter-store:
     TAG_VERSION: "image_tag_v"
-    TAG_PATCH:   "image_tag_p"
+    TAG_PATCH2:   "image_tag_p"
     
 
 phases:
@@ -24,7 +24,8 @@ phases:
   
   build:
     commands:
-      - TAG_PATCH=$TAG_VERSION.$((TAG_PATCH+1))
+      - TAG_PATCH2=$((TAG_PATCH2+1))
+      - TAG_PATCH=$TAG_VERSION.$TAG_PATCH2
       - cd src/
       - ls -la
       - docker build -t $IMAGE_REPO_NAME:$TAG_PATCH -f Web/Dockerfile .
@@ -40,7 +41,7 @@ phases:
       - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$TAG_PATCH
       #store new image tag number in ssm 
-      - aws ssm put-parameter --name image_tag_p --type String --value ${TAG_PATCH} --overwrite      
+      - aws ssm put-parameter --name image_tag_p --type String --value ${TAG_PATCH2} --overwrite      
 
 artifacts:
     files: 
