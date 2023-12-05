@@ -1,0 +1,46 @@
+version: 0.2
+env:
+  variables:
+    #VERSION: "1.0"
+    IMAGE_REPO_NAME: "resttest"
+    AWS_ACCOUNT_ID: "877859816718"
+    AWS_DEFAULT_REGION: "eu-central-1"
+  parameter-store:
+    version: "image_tag_v"
+    patch:   "image_tag_p"
+
+phases:
+#  install:
+#    commands:
+#      - /usr/local/bin/dotnet-install.sh --channel STS
+
+  pre_build:
+    commands:
+      - echo "Starting buidling docker image"
+      - echo "Login in ecr"
+      - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 877859816718.dkr.ecr.eu-central-1.amazonaws.com
+  
+  build:
+    commands:
+      - $patch=$((patch+1))
+      - image_tag=$version.$patch
+      - cd src/Web/
+      - pwd
+      - docker build -t $IMAGE_REPO_NAME:$image_tag .
+      - printf '[{"name":"$IMAGE_REPO_NAME","imageUri":"%s"}]'  $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag  > imageDetail.json
+      - cat imageDetail.json
+
+  post_build: 
+    commands:
+      - echo "Docker build complited"          
+      - echo Docker tag
+      - docker tag $IMAGE_REPO_NAME:$image_tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag
+      - echo Pushing the Docker image...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag
+      #store new image tag number in ssm 
+      - aws ssm put-parameter --name image_tag_p --type String --value ${image_tag} --overwrite      
+
+artifacts:
+    files: 
+      - imageDetail.json
+    discard-paths: yes
