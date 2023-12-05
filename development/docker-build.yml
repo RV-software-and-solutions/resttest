@@ -24,7 +24,7 @@ phases:
   
   build:
     commands:
-      - TAG_PATCH=$TAG_VERSION.$((TAG_PATCH+1))
+      - TAG_PATCH=$TAG_VERSION$((TAG_PATCH+1))
       - cd src/
       - ls -la
       - docker build -t $IMAGE_REPO_NAME:$TAG_PATCH -f Web/Dockerfile .
