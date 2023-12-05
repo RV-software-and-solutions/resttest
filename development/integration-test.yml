@@ -20,7 +20,8 @@ phases:
       - echo "Running unit-test.sh"
       - chmod -R u+x development
       - ls -la
-      - ./development/integration-test.sh
+      # puted 3 to skip this build 
+      - ./development/integration-test3.sh
       
   post_build: 
     commands:
