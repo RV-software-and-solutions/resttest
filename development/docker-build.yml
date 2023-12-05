@@ -5,10 +5,10 @@ env:
     IMAGE_REPO_NAME: "resttest"
     AWS_ACCOUNT_ID: "877859816718"
     AWS_DEFAULT_REGION: "eu-central-1"
-    image_tag: "0"
+    
   parameter-store:
-    TAG_VERSION: image_tag_v
-    TAG_PATCH:   image_tag_p
+    TAG_VERSION: "image_tag_v"
+    TAG_PATCH:   "image_tag_p"
     
 
 phases:
@@ -20,7 +20,7 @@ phases:
     commands:
       - echo "Starting buidling docker image"
       - echo "Login in ecr"
-      - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 877859816718.dkr.ecr.eu-central-1.amazonaws.com
+      - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   
   build:
     commands:
