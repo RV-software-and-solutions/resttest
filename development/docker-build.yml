@@ -30,7 +30,7 @@ phases:
       - pwd
       - cd src/
       - ls -la
-      - docker build -t $IMAGE_REPO_NAME:$tag_patch -f Web/Dockerfile .
+      - docker build -t $IMAGE_REPO_NAME:$image_tag -f Web/Dockerfile .
       - printf '[{"name":"$IMAGE_REPO_NAME","imageUri":"%s"}]'  $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag  > imageDetail.json
       - cat imageDetail.json
 
@@ -40,7 +40,7 @@ phases:
       - echo Docker tag
       - docker tag $IMAGE_REPO_NAME:$image_tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$tag_tag
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$image_tag
       #store new image tag number in ssm 
       - aws ssm put-parameter --name image_tag_p --type String --value ${tag_patch} --overwrite      
 
