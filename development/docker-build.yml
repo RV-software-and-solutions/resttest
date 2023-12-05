@@ -26,7 +26,7 @@ phases:
     commands:
       - tag_patch=$((tag_patch+1))
       - image_tag=$tag_patch
-      - echo IMAGE TAG IS $image_tag
+      - echo IMAGE TAG IS 0000$image_tag
       - pwd
       - cd src/
       - ls -la
