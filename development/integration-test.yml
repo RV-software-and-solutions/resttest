@@ -21,7 +21,7 @@ phases:
       - chmod -R u+x development
       - ls -la
       # puted 3 to skip this build 
-      - ./development/integration-test3.sh
+      - ./development/integration-test.sh
       
   post_build: 
     commands:

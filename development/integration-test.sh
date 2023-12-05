@@ -1,7 +1,7 @@
 #!/bin/bash
 # This Bash script runs unit tests using dotnet test
 
-startDir="tests"
+startDir="tests2"
 #cd "$startDir" || exit 1
 
 targetTest="Integration"
