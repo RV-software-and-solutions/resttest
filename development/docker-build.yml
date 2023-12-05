@@ -5,9 +5,11 @@ env:
     IMAGE_REPO_NAME: "resttest"
     AWS_ACCOUNT_ID: "877859816718"
     AWS_DEFAULT_REGION: "eu-central-1"
+    image_tag: "0"
   parameter-store:
     version: "image_tag_v"
     patch:   "image_tag_p"
+    
 
 phases:
 #  install:
@@ -24,6 +26,7 @@ phases:
     commands:
       - patch=$((patch+1))
       - image_tag=$version.$patch
+      - echo "IMAGE TAG IS " $image_tag
       - cd src/Web/
       - pwd
       - docker build -t $IMAGE_REPO_NAME:$image_tag .
