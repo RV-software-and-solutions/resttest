@@ -27,7 +27,7 @@ public class ResourceItemsController : ApiControllerBase
     /// <response code="200">Returns a paginated list of resource items.</response>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<PaginatedList<ResourceItemDto>>> GetResourceItemsWithPagination([FromQuery] GetResourceItemsWithPaginationQuery query)
+    public async Task<ActionResult<PaginatedList<ResourceItemDto>>> GetWithPagination([FromQuery] GetResourceItemsWithPaginationQuery query)
     {
         return await Mediator.Send(query);
     }

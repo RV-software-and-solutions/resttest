@@ -2,7 +2,7 @@
 
 namespace RestTest.Web.FluentValidators;
 
-public class UserSignInValidator : ExtendAbstractValidator<UserSignUpRequst>
+public class UserSignInValidator : ExtendAbstractValidator<SignUpCommandRequst>
 {
     public UserSignInValidator()
     {

@@ -12,9 +12,9 @@ public class AddNewSynonymCommandHandler : IRequestHandler<AddNewSynonymCommand,
         _synonymService = synonymService;
     }
 
-    public Task<Result> Handle(AddNewSynonymCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(AddNewSynonymCommand request, CancellationToken cancellationToken)
     {
-        _synonymService.AddSynonym(request.SynonymFrom, request.SynonymTo);
-        return Task.FromResult(Result.Success());
+        await _synonymService.AddSynonymAsync(request.SynonymFrom, request.SynonymTo);
+        return Result.Success();
     }
 }

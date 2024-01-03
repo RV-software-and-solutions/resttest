@@ -1,4 +1,4 @@
-﻿using RestTest.Domain.Dtos.Auth;
+﻿using RestTest.Core.Dtos.Auth;
 
 namespace RestTest.Web.Models.Views.Auth;
 

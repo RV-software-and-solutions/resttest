@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using RestTest.Application.Common.Exceptions;
+using RestTest.Core.Common.Exceptions;
 using ValidationException = RestTest.Application.Common.Exceptions.ValidationException;
 
 namespace RestTest.Web.Filters;
@@ -18,6 +19,7 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
                 { typeof(NotFoundException), HandleNotFoundException },
                 { typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException },
                 { typeof(ForbiddenAccessException), HandleForbiddenAccessException },
+                { typeof(ServerErrorException), HandleServerErrorException },
             };
     }
 
@@ -114,6 +116,26 @@ public class ApiExceptionFilterAttribute : ExceptionFilterAttribute
         context.Result = new ObjectResult(details)
         {
             StatusCode = StatusCodes.Status403Forbidden
+        };
+
+        context.ExceptionHandled = true;
+    }
+
+    private void HandleServerErrorException(ExceptionContext context)
+    {
+        ServerErrorException exception = (ServerErrorException)context.Exception;
+
+        ProblemDetails details = new ProblemDetails
+        {
+            Status = StatusCodes.Status500InternalServerError,
+            Title = "Server error",
+            Type = "https://tools.ietf.org/html/rfc7231#section-6.6.1",
+            Detail = exception.Message,
+        };
+
+        context.Result = new ObjectResult(details)
+        {
+            StatusCode = StatusCodes.Status500InternalServerError
         };
 
         context.ExceptionHandled = true;

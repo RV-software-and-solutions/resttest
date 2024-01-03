@@ -1,4 +1,4 @@
-﻿namespace RestTest.Domain.Dtos.Auth;
+﻿namespace RestTest.Core.Dtos.Auth;
 public class AuthResponseDto : AbstractAuthResponseDto
 {
     public string Username { get; set; }

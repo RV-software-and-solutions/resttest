@@ -1,7 +1,7 @@
 ﻿using Amazon.CognitoIdentityProvider.Model;
 using Amazon.Extensions.CognitoAuthentication;
 using RestTest.Core.Services.AwsCognito;
-using RestTest.Domain.Dtos.Auth;
+using RestTest.Core.Dtos.Auth;
 
 namespace RestTest.Application.Auth.Commands.ChangeUserPassword;
 public record ChangeUserPasswordCommand(string CurrentPassword, string EmailAddress, string NewPassword) : IRequest<ChangeUserPasswordResponseDto>;
