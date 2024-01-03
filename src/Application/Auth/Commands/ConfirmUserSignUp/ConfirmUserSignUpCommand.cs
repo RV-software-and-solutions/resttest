@@ -1,7 +1,6 @@
 ﻿using Amazon.CognitoIdentityProvider.Model;
-using MediatR;
+using RestTest.Core.Dtos.Auth;
 using RestTest.Core.Services.AwsCognito;
-using RestTest.Core.Dtos.Auth.SignUp;
 
 namespace RestTest.Application.Auth.Commands.ConfirmUserSignUp;
 
