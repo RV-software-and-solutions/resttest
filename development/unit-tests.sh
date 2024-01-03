@@ -2,7 +2,7 @@
 # This bash script runs unit tests using dotnet test
 
 # Set the start directory
-startDir="../tests"
+startDir="./../tests"
 cd "$startDir" || exit 1
 
 targetTest="Unit"
@@ -12,4 +12,3 @@ find "$startDir" -type d -name "*${targetTest}Tests*" | while read -r testDir; d
     echo "$testDir"
     dotnet test "$testDir" --collect:"XPlat Code Coverage"
 done
-
