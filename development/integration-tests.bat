@@ -1,7 +1,7 @@
 @echo off
 rem This batch file runs unit tests using dotnet test
 setlocal enabledelayedexpansion
-set startDir=../tests
+set startDir=./../tests
 cd /d "%startDir%"
 
 set targetTest="Integration"
