@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using RestTest.Application;
 using RestTest.Core;
 using RestTest.Infrastructure;
@@ -19,6 +20,9 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration)
     .AddWebUIServices();
+
+builder.Services.AddControllers(options =>
+    options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer())));
 
 WebApplication app = builder.Build();
 

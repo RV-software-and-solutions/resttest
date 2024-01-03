@@ -1,7 +1,6 @@
 ﻿using Amazon.CognitoIdentityProvider.Model;
+using RestTest.Core.Dtos.Auth;
 using RestTest.Core.Services.AwsCognito;
-using RestTest.Domain.Dtos.Auth;
-using RestTest.Application.Auth.Commands.SignUpUser;
 
 namespace RestTest.Application.Auth.Commands.SignUpUser;
 public record SignUpUserCommand(string EmailAddress, string Username, string Password) : IRequest<SignUpUserResponseDto>;
@@ -53,7 +52,7 @@ public class SignUpUserCommandHandler : IRequestHandler<SignUpUserCommand, SignU
             return new SignUpUserResponseDto
             {
                 IsSuccess = false,
-                Message = "Emailaddress Already Exists"
+                Message = "Email address Already Exists"
             };
         }
     }

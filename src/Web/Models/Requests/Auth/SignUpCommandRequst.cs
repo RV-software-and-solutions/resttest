@@ -1,6 +1,6 @@
 ﻿namespace RestTest.Web.Models.Requests.Auth;
 
-public class UserSignUpRequst
+public class SignUpCommandRequst
 {
     public string? UserName { get; set; }
 

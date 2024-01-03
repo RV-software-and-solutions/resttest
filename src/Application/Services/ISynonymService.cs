@@ -10,6 +10,8 @@ public interface ISynonymService
     /// <param name="synonymOfWord">The synonym of the word.</param>
     void AddSynonym(string word, string synonymOfWord);
 
+    Task AddSynonymAsync(string word, string synonymOfWord);
+
     /// <summary>
     /// Retrieves all synonyms for a specific word.
     /// </summary>

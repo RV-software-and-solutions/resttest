@@ -6,14 +6,14 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/api/Auth/login": {
+    "/api/auth/login": {
       "post": {
         "tags": [
           "Auth"
         ],
         "summary": "Authenticates a user and provides a token.",
         "description": "Use this endpoint for user login. The endpoint expects the user's credentials in the request body.\nOn successful authentication, it returns a token for accessing secured resources.",
-        "operationId": "Auth_LoginUser",
+        "operationId": "Auth_Login",
         "requestBody": {
           "x-name": "userLoginRequest",
           "description": "The user's login credentials.",
@@ -34,21 +34,21 @@
         }
       }
     },
-    "/api/Auth/sign-in": {
+    "/api/auth/sign-up": {
       "post": {
         "tags": [
           "Auth"
         ],
         "summary": "Registers a new user.",
         "description": "Use this endpoint for user registration. It accepts user details in the request body and creates a new user.",
-        "operationId": "Auth_SignInUser",
+        "operationId": "Auth_SignUp",
         "requestBody": {
-          "x-name": "userSignUpRequest",
+          "x-name": "signUpUserRequest",
           "description": "The new user's sign-up details.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserSignUpRequst"
+                "$ref": "#/components/schemas/SignUpCommandRequst"
               }
             }
           },
@@ -62,7 +62,7 @@
         }
       }
     },
-    "/api/File": {
+    "/api/file/upload": {
       "post": {
         "tags": [
           "File"
@@ -98,14 +98,14 @@
         ]
       }
     },
-    "/api/ResourceItems": {
+    "/api/resource-items/get-with-pagination": {
       "get": {
         "tags": [
           "ResourceItems"
         ],
         "summary": "Retrieves a paginated list of resource items.",
         "description": "Use this endpoint to fetch a paginated list of resource items. \nYou can specify pagination parameters in the query.",
-        "operationId": "ResourceItems_GetResourceItemsWithPagination",
+        "operationId": "ResourceItems_GetWithPagination",
         "parameters": [
           {
             "name": "Title",
@@ -152,7 +152,9 @@
             "JWT": []
           }
         ]
-      },
+      }
+    },
+    "/api/resource-items/create": {
       "post": {
         "tags": [
           "ResourceItems"
@@ -193,7 +195,7 @@
         ]
       }
     },
-    "/api/Synonym": {
+    "/api/synonym/get-target-synonyms": {
       "get": {
         "tags": [
           "Synonym"
@@ -223,7 +225,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/synonym/add-synonym": {
       "post": {
         "tags": [
           "Synonym"
@@ -258,7 +262,7 @@
         }
       }
     },
-    "/api/Synonym/save-current-state": {
+    "/api/synonym/save-current-state": {
       "post": {
         "tags": [
           "Synonym"
@@ -280,7 +284,7 @@
         }
       }
     },
-    "/api/Synonym/load-state": {
+    "/api/synonym/load-state": {
       "post": {
         "tags": [
           "Synonym"
@@ -302,7 +306,7 @@
         }
       }
     },
-    "/api/Synonym/reset-state": {
+    "/api/synonym/reset-state": {
       "post": {
         "tags": [
           "Synonym"
@@ -339,7 +343,7 @@
           }
         }
       },
-      "UserSignUpRequst": {
+      "SignUpCommandRequst": {
         "type": "object",
         "additionalProperties": false,
         "properties": {

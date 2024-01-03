@@ -9,6 +9,8 @@ public record SaveCurrentStateCommand() : IRequest<Result>;
 
 public class SaveCurrentStateCommandHandler : IRequestHandler<SaveCurrentStateCommand, Result>
 {
+    private const string SYNONYM_DYNAMO_TABLE_NAME = "synonyms";
+
     private readonly ISynonymService _synonymService;
     private readonly IAwsDynamoService _awsDynamoService;
     public SaveCurrentStateCommandHandler(ISynonymService synonymService, IAwsDynamoService awsDynamoService)
@@ -19,7 +21,7 @@ public class SaveCurrentStateCommandHandler : IRequestHandler<SaveCurrentStateCo
 
     public async Task<Result> Handle(SaveCurrentStateCommand request, CancellationToken cancellationToken)
     {
-        await _awsDynamoService.DeleteItemsAsBatch<VertexItem>("synonyms");
+        await _awsDynamoService.DeleteItemsAsBatch<VertexItem>(SYNONYM_DYNAMO_TABLE_NAME);
 
         List<VertexItem> allSynonyms = _synonymService.GetAllSynonyms().ConvertAll(synonym => new VertexItem()
         {
@@ -28,7 +30,7 @@ public class SaveCurrentStateCommandHandler : IRequestHandler<SaveCurrentStateCo
             AdjacentIds = synonym.Adjacent?.ConvertAll(v => v.Id),
         });
 
-        await _awsDynamoService.SaveItemsAsBatch("synonyms", allSynonyms);
+        await _awsDynamoService.SaveItemsAsBatch(SYNONYM_DYNAMO_TABLE_NAME, allSynonyms);
         return Result.Success();
     }
 }

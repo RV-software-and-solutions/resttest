@@ -75,7 +75,7 @@ public class SynonymController : ApiControllerBase
     ///     
     /// </remarks>
     /// <response code="200">Returns a result object indicating the success or failure of the save operation.</response>
-    [HttpPost("save-current-state")]
+    [HttpPost]
     [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
     public async Task<ActionResult<Result>> SaveCurrentState()
     {
@@ -95,7 +95,7 @@ public class SynonymController : ApiControllerBase
     ///     POST /synonym/load-state
     /// </remarks>
     /// <response code="200">Returns a result object indicating the success or failure of the load operation.</response>
-    [HttpPost("load-state")]
+    [HttpPost]
     [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
     public async Task<ActionResult<Result>> LoadState()
     {
@@ -119,7 +119,7 @@ public class SynonymController : ApiControllerBase
     /// 
     /// </remarks>
     /// <response code="200">Returns the result of the reset operation, indicating success.</response>
-    [HttpPost("reset-state")]
+    [HttpPost]
     [ProducesResponseType(typeof(Result), StatusCodes.Status200OK)]
     public async Task<ActionResult<Result>> ResetState()
     {

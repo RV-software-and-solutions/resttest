@@ -5,7 +5,7 @@ namespace RestTest.Web.Controllers;
 
 [ApiController]
 [ApiExceptionFilter]
-[Route("api/[controller]")]
+[Route("api/[controller]/[action]")]
 public abstract class ApiControllerBase : ControllerBase
 {
     private ISender? _mediator;

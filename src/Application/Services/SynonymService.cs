@@ -30,6 +30,14 @@ public class SynonymService : ISynonymService
         _graphService.IfNotExistsAddEdge(wordVertex, synonymVertex);
     }
 
+    public async Task AddSynonymAsync(string word, string synonymOfWord)
+    {
+        SynonymVertex wordVertex = _graphService.IfNotExistsAddVertex(word);
+        SynonymVertex synonymVertex = _graphService.IfNotExistsAddVertex(synonymOfWord);
+        _graphService.IfNotExistsAddEdge(wordVertex, synonymVertex);
+        await Task.CompletedTask;
+    }
+
     /// <inheritdoc/>
     public void ClearAllSynonyms()
     {

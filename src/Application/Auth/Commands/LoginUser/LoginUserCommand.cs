@@ -1,9 +1,7 @@
-﻿using System.Net;
-using Amazon.CognitoIdentityProvider.Model;
+﻿using Amazon.CognitoIdentityProvider.Model;
 using Amazon.Extensions.CognitoAuthentication;
+using RestTest.Core.Dtos.Auth;
 using RestTest.Core.Services.AwsCognito;
-using RestTest.Domain.Dtos.Auth;
-using RestTest.Domain.Enums.Auth;
 
 namespace RestTest.Application.Auth.Commands.LoginUser;
 public record LoginUserCommand(string EmailAddress, string Password) : IRequest<AuthResponseDto>;
@@ -46,38 +44,7 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, AuthRes
         }
         catch (UserNotConfirmedException)
         {
-            ListUsersResponse listUsersResponse = await FindUsersByEmailAddress(request.EmailAddress);
-
-            if (listUsersResponse is not null && listUsersResponse.HttpStatusCode == HttpStatusCode.OK)
-            {
-                List<UserType> users = listUsersResponse.Users;
-                UserType? filteredUser = users.Find(x => x.Attributes.Exists(x => x.Name == "email" && x.Value == request.EmailAddress));
-
-                var resendCodeResponse = await _awsCognitoService.CognitoIdentityProviderClient.ResendConfirmationCodeAsync(new ResendConfirmationCodeRequest
-                {
-                    ClientId = _awsCognitoService.Configuration.UserPoolClientId,
-                    Username = filteredUser.Username
-                }, cancellationToken);
-
-                if (resendCodeResponse.HttpStatusCode == HttpStatusCode.OK)
-                {
-                    return new AuthResponseDto
-                    {
-                        IsSuccess = false,
-                        Message = $"Confirmation Code sent to {resendCodeResponse.CodeDeliveryDetails.Destination} via {resendCodeResponse.CodeDeliveryDetails.DeliveryMedium.Value}",
-                        Status = CognitoStatusCodes.USER_UNCONFIRMED,
-                        UserId = filteredUser.Username,
-                    };
-                }
-
-                return new AuthResponseDto
-                {
-                    IsSuccess = false,
-                    Message = $"Resend Confirmation Code Response: {resendCodeResponse.HttpStatusCode}",
-                    Status = CognitoStatusCodes.API_ERROR,
-                    UserId = filteredUser.Username,
-                };
-            }
+            await UserNotConfirmedAccount(request.EmailAddress, cancellationToken);
         }
         catch (UserNotFoundException)
         {
@@ -87,7 +54,7 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, AuthRes
             {
                 IsSuccess = false,
                 Message = "EmailAddress not found.",
-                Status = CognitoStatusCodes.USER_NOTFOUND
+                Status = CognitoStatusCodeEnums.USER_NOTFOUND
             };
         }
         catch (NotAuthorizedException)
@@ -106,13 +73,29 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, AuthRes
         };
     }
 
-    private async Task<ListUsersResponse> FindUsersByEmailAddress(string emailAddress)
+    private async Task<AuthResponseDto> UserNotConfirmedAccount(string emailAddress, CancellationToken cancellationToken)
     {
-        ListUsersRequest listUsersRequest = new()
+        UserType filteredUser = await _awsCognitoService.FindUsersByEmailAddress(emailAddress);
+
+        CodeDeliveryDetailsType? resendCodeResponse = await _awsCognitoService.ResendConfirmationEmail(filteredUser, cancellationToken);
+
+        if (resendCodeResponse is not null)
         {
-            UserPoolId = _awsCognitoService.Configuration.UserPoolId,
-            Filter = $"email=\"{emailAddress}\""
+            return new AuthResponseDto
+            {
+                IsSuccess = false,
+                Message = $"Confirmation Code sent to {emailAddress} via {resendCodeResponse.DeliveryMedium.Value}",
+                Status = CognitoStatusCodeEnums.USER_UNCONFIRMED,
+                UserId = filteredUser.Username,
+            };
+        }
+
+        return new AuthResponseDto
+        {
+            IsSuccess = false,
+            Message = $"Resend Confirmation Code faild to {emailAddress}",
+            Status = CognitoStatusCodeEnums.API_ERROR,
+            UserId = filteredUser.Username,
         };
-        return await _awsCognitoService.CognitoIdentityProviderClient.ListUsersAsync(listUsersRequest);
     }
 }
