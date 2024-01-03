@@ -12,3 +12,4 @@ find "$startDir" -type d -name "*${targetTest}Tests*" | while read -r testDir; d
     echo "$testDir"
     dotnet test "$testDir" --collect:"XPlat Code Coverage"
 done
+
