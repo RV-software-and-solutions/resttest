@@ -6,8 +6,8 @@ using RestTest.Domain.Dtos.Synonym;
 namespace Application.UnitTests.Services;
 public class SynonymServiceTests
 {
-    private ISynonymService _synonymService;
-    private IGraphService<SynonymVertex, string> _graphService;
+    private ISynonymService _synonymService = null!;
+    private IGraphService<SynonymVertex, string> _graphService = null!;
 
     [SetUp]
     public void Setup()
