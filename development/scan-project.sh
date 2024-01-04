@@ -1,6 +1,6 @@
 #!/bin/bash
 # Enhanced bash script to run unit tests using dotnet test
-startDir="../"
+startDir="."
 
 echo "Changing directory to $startDir"
 cd "$startDir" || exit 1
