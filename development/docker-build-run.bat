@@ -2,10 +2,10 @@
 
 set IMAGE_NAME=resttest
 
-call "docker-build.bat"
-cd ../development
+call "./development/docker-build.bat"
 
 :: Call the second batch file from the docker directory
-call "docker-run.bat"
+call "./development/docker-run.bat"
 
+cd ..
 echo All done!

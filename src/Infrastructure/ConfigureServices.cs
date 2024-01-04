@@ -31,8 +31,6 @@ public static class ConfigureServices
         services.AddTransient<IDateTime, DateTimeService>();
         services.AddTransient<IIdentityService, IdentityService>();
 
-        services.AddAuthentication();
-
         services.AddAuthorizationCore(options =>
             options.AddPolicy("CanPurge", policy => policy.RequireRole("Administrator")));
 

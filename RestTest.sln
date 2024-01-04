@@ -28,6 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{245F33
 	ProjectSection(SolutionItems) = preProject
 		development\docker-build-run.bat = development\docker-build-run.bat
 		development\docker-build.bat = development\docker-build.bat
+		development\docker-build.sh = development\docker-build.sh
 		development\docker-run.bat = development\docker-run.bat
 		development\pg.bat = development\pg.bat
 		development\pg.yml = development\pg.yml

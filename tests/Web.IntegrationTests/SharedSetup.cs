@@ -24,7 +24,6 @@ public class SharedSetup
         await DatabaseSetup.InitializeRespawner();
     }
 
-    [TearDown]
     [OneTimeTearDown]
     public async Task RunAfterTests()
     {
