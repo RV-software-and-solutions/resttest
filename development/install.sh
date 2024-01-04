@@ -3,11 +3,12 @@
 
 version="7.0"
 
+sudo apt-get update -y
 echo "Installing dotnet-sdk-$version"
-sudo apt install dotnet-sdk-$version
+sudo apt install -y dotnet-sdk-$version
 
 echo "Installing dotnet-runtime-$version"
-sudo apt install dotnet-runtime-$version
+sudo apt install -y dotnet-runtime-$version
 
 echo "Installing aspnetcore-runtime-$version"
-sudo apt install aspnetcore-runtime-$version
+sudo apt install -y aspnetcore-runtime-$version
