@@ -48,7 +48,7 @@ app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwaggerUi3(settings =>
+app.UseSwaggerUi(settings =>
 {
     settings.Path = "/api";
     settings.DocumentPath = "/api/specification.json";
@@ -65,17 +65,16 @@ app.UseRouting();
 app.SetCorsPolicy();
 
 app.UseAuthentication();
-app.UseIdentityServer();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapRazorPages();
+//app.MapRazorPages();
 
 app.MapFallbackToFile("index.html");
-
+app.Map("/", () => Results.Redirect("/api"));
 app.Run();
 
 // Make the implicit Program class public so test projects can access it

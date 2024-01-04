@@ -26,8 +26,8 @@ public static class ConfigureServices
 
         services.AddScoped(provider =>
         {
-            var validationRules = provider.GetService<IEnumerable<FluentValidationRule>>();
-            var loggerFactory = provider.GetService<ILoggerFactory>();
+            IEnumerable<FluentValidationRule>? validationRules = provider.GetService<IEnumerable<FluentValidationRule>>();
+            ILoggerFactory? loggerFactory = provider.GetService<ILoggerFactory>();
 
             return new FluentValidationSchemaProcessor(provider, validationRules, loggerFactory);
         });
@@ -38,10 +38,10 @@ public static class ConfigureServices
 
         services.AddOpenApiDocument((configure, serviceProvider) =>
         {
-            var fluentValidationSchemaProcessor = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<FluentValidationSchemaProcessor>();
+            FluentValidationSchemaProcessor fluentValidationSchemaProcessor = serviceProvider.CreateScope().ServiceProvider.GetRequiredService<FluentValidationSchemaProcessor>();
 
             // Add the fluent validations schema processor
-            configure.SchemaProcessors.Add(fluentValidationSchemaProcessor);
+            configure.SchemaSettings.SchemaProcessors.Add(fluentValidationSchemaProcessor);
 
             configure.Title = "RestTest API";
             configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme

@@ -53,7 +53,6 @@ public class GetResourceItemsWithPaginationTests
         PaginatedList<ResourceItemDto> methodResult = await handler.Handle(query, default);
 
         //assert
-        Assert.IsNotEmpty(methodResult.Items);
-        Assert.AreEqual("test location", methodResult.Items.First().Location);
+        Assert.That("test location", Is.EqualTo(methodResult.Items.First().Location));
     }
 }

@@ -28,8 +28,7 @@ public class SynonymServiceTests
         //assert
         List<SynonymVertex> result = _synonymService.GetAllSynonyms();
 
-        Assert.IsNotEmpty(result);
-        Assert.AreEqual(3, result.Count);
+        Assert.That(3, Is.EqualTo(result.Count));
     }
 
     [Test]
@@ -45,11 +44,9 @@ public class SynonymServiceTests
         //assert
         List<string> result = _synonymService.GetAllSynonymsByWord(findSynonymsFrom)!;
 
-        Assert.IsNotNull(result);
-        Assert.IsNotEmpty(result!);
-        Assert.AreEqual(2, result!.Count);
-        Assert.Contains("B", result);
-        Assert.Contains("C", result);
+        Assert.That(2, Is.EqualTo(result!.Count));
+        Assert.That("B", Is.AnyOf(result));
+        Assert.That("C", Is.AnyOf(result));
     }
 
     [Test]
@@ -65,11 +62,9 @@ public class SynonymServiceTests
         //assert
         List<string> result = _synonymService.GetAllSynonymsByWord(findSynonymsFrom)!;
 
-        Assert.IsNotNull(result);
-        Assert.IsNotEmpty(result!);
-        Assert.AreEqual(2, result!.Count);
-        Assert.Contains("A", result);
-        Assert.Contains("C", result);
+        Assert.That(2, Is.EqualTo(result!.Count));
+        Assert.That("A", Is.AnyOf(result));
+        Assert.That("C", Is.AnyOf(result));
     }
 
     [Test]
@@ -85,11 +80,9 @@ public class SynonymServiceTests
         //assert
         List<string> result = _synonymService.GetAllSynonymsByWord(findSynonymsFrom)!;
 
-        Assert.IsNotNull(result);
-        Assert.IsNotEmpty(result!);
-        Assert.AreEqual(2, result!.Count);
-        Assert.Contains("A", result);
-        Assert.Contains("B", result);
+        Assert.That(2, Is.EqualTo(result!.Count));
+        Assert.That("A", Is.AnyOf(result));
+        Assert.That("B", Is.AnyOf(result));
     }
 
     [Test]
@@ -105,7 +98,7 @@ public class SynonymServiceTests
         //assert
         List<string>? result = _synonymService.GetAllSynonymsByWord(findSynonymsFrom);
 
-        Assert.IsNull(result);
+        Assert.That(result, Is.Null);
     }
 
     [Test]
@@ -122,9 +115,7 @@ public class SynonymServiceTests
         //assert
         List<string>? result = _synonymService.GetAllSynonymsByWord(findSynonymsFrom);
 
-        Assert.IsNotNull(result);
-        Assert.IsNotEmpty(result!);
-        Assert.Contains("marko", result);
+        Assert.That("marko", Is.AnyOf(result!));
     }
 
     [Test]
@@ -140,8 +131,7 @@ public class SynonymServiceTests
         List<SynonymVertex> result = _synonymService.GetAllSynonyms();
 
         //assert
-        Assert.IsNotNull(result);
-        Assert.IsEmpty(result);
+        Assert.That(result, Is.Empty);
     }
 
     [Test]
@@ -160,10 +150,8 @@ public class SynonymServiceTests
         List<SynonymVertex> result = _synonymService.GetAllSynonyms();
 
         //assert
-        Assert.IsNotNull(result);
-        Assert.True(result.Exists(vertex => vertex.Value == "A"));
-        Assert.True(result.Exists(vertex => vertex.Value == "B"));
-        Assert.True(result.Exists(vertex => vertex.Value == "C"));
+        Assert.That(result.Exists(vertex => vertex.Value == "A"));
+        Assert.That(result.Exists(vertex => vertex.Value == "B"));
+        Assert.That(result.Exists(vertex => vertex.Value == "C"));
     }
-
 }
