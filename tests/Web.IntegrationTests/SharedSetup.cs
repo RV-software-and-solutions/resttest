@@ -24,6 +24,7 @@ public class SharedSetup
         await DatabaseSetup.InitializeRespawner();
     }
 
+    [TearDown]
     [OneTimeTearDown]
     public async Task RunAfterTests()
     {
@@ -32,6 +33,7 @@ public class SharedSetup
         await Factory.DisposeAsync();
         Client.Dispose();
     }
+
     public static T GetRequiredService<T>() where T : notnull
     {
         _childScope?.Dispose();
