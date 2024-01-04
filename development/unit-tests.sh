@@ -2,7 +2,8 @@
 # This bash script runs unit tests using dotnet test
 
 # Set the start directory
-startDir="./tests"
+startDir="./../tests"
+echo "Changing directory to $startDir"
 cd "$startDir" || exit 1
 
 targetTest="Unit"
