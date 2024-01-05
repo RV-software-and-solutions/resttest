@@ -6,32 +6,34 @@
 INSTALL_SCRIPT_PATH="./development/install.sh"
 
 # Check if dotnet is installed
-if ! command -v dotnet &> /dev/null; then
-    echo "dotnet is not installed. Running install.sh to install .NET Core SDK."
-    if [ -f "$INSTALL_SCRIPT_PATH" ]; then
-        bash "$INSTALL_SCRIPT_PATH"
-        if [ $? -ne 0 ]; then
-            echo "Failed to install .NET Core SDK."
-            exit 1
-        fi
-    else
-        echo "install.sh script not found at $INSTALL_SCRIPT_PATH."
-        exit 1
-    fi
-fi
+# if ! command -v dotnet &> /dev/null; then
+#     echo "dotnet is not installed. Running install.sh to install .NET Core SDK."
+#     if [ -f "$INSTALL_SCRIPT_PATH" ]; then
+#         bash "$INSTALL_SCRIPT_PATH"
+#         if [ $? -ne 0 ]; then
+#             echo "Failed to install .NET Core SDK."
+#             exit 1
+#         fi
+#     else
+#         echo "install.sh script not found at $INSTALL_SCRIPT_PATH."
+#         exit 1
+#     fi
+# fi
 
 export DOTNET_ROOT=/usr/share/dotnet
 export PATH="$PATH:/root/.dotnet/tools"
 
 # Check if dotnet-ef tool is installed
-if ! command -v $(dotnet ef) &> /dev/null; then
-    echo "dotnet ef is not installed. Installing now..."
-    dotnet tool install --global dotnet-ef
-    if [ $? -ne 0 ]; then
-        echo "Failed to install dotnet ef."
-        exit 1
-    fi
-fi
+# if ! command -v $(dotnet ef --help) &> /dev/null; then
+#     echo "dotnet ef is not installed. Installing now..."
+#     dotnet tool install --global dotnet-ef
+#     if [ $? -ne 0 ]; then
+#         echo "Failed to install dotnet ef."
+#         exit 1
+#     fi
+# fi
+
+dotnet tool install --global dotnet-ef
 
 echo "dotnet ef is installed."
 
