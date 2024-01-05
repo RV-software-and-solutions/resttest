@@ -43,7 +43,7 @@ fi
 connectionString=$1
 
 # Execute the dotnet command
-dotnet ef database update --project ./src/Infrastructure/Infrastructure.csproj --startup-project ./src/Web/Web.csproj --connection "$connectionString"
+dotnet ef database update --project ./src/Infrastructure/Infrastructure.csproj --startup-project ./src/Web/Web.csproj --connection "$connectionString" || exit 1
 
 echo ////////////////////////
 echo     Migrations done
