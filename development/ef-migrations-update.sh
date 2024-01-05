@@ -32,6 +32,7 @@ fi
 
 echo "dotnet ef is installed."
 export DOTNET_ROOT=/usr/share/dotnet
+export PATH="$PATH:/root/.dotnet/tools"
 
 # Check if the first argument is empty
 if [ -z "$1" ]; then
