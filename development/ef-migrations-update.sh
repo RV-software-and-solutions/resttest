@@ -20,8 +20,11 @@ if ! command -v dotnet &> /dev/null; then
     fi
 fi
 
+export DOTNET_ROOT=/usr/share/dotnet
+export PATH="$PATH:/root/.dotnet/tools"
+
 # Check if dotnet-ef tool is installed
-if ! command -v dotnet ef --help &> /dev/null; then
+if ! command -v $(dotnet ef) &> /dev/null; then
     echo "dotnet ef is not installed. Installing now..."
     dotnet tool install --global dotnet-ef
     if [ $? -ne 0 ]; then
@@ -31,8 +34,6 @@ if ! command -v dotnet ef --help &> /dev/null; then
 fi
 
 echo "dotnet ef is installed."
-export DOTNET_ROOT=/usr/share/dotnet
-export PATH="$PATH:/root/.dotnet/tools"
 
 # Check if the first argument is empty
 if [ -z "$1" ]; then
