@@ -41,8 +41,6 @@ fi
 
 connectionString=$1
 
-echo "Default Connection String: $connectionString"
-
 # Execute the dotnet command
 dotnet ef database update --project ./src/Infrastructure/Infrastructure.csproj --startup-project ./src/Web/Web.csproj --connection "$connectionString"
 
