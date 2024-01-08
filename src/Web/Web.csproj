@@ -49,10 +49,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="config.nswag" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Content Include="config.nswag" />
 	</ItemGroup>
 
@@ -61,7 +57,7 @@
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 	</PropertyGroup>
 
-	<Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' And '$(SkipNSwag)' != 'True' ">
+	<Target Name="NSwag" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' And '$(BuildingInsideVisualStudio)' == 'true' ">
 		<Exec ConsoleToMSBuild="true" ContinueOnError="true" WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net80) run config.nswag /variables:Configuration=$(Configuration)">
 			<Output TaskParameter="ExitCode" PropertyName="NSwagExitCode" />
 			<Output TaskParameter="ConsoleOutput" PropertyName="NSwagOutput" />

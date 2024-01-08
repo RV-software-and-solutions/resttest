@@ -20,9 +20,6 @@ INSTALL_SCRIPT_PATH="./development/install.sh"
 #     fi
 # fi
 
-export DOTNET_ROOT=/usr/share/dotnet
-export PATH="$PATH:/root/.dotnet/tools"
-
 # Check if dotnet-ef tool is installed
 # if ! command -v $(dotnet ef --help) &> /dev/null; then
 #     echo "dotnet ef is not installed. Installing now..."
@@ -34,6 +31,9 @@ export PATH="$PATH:/root/.dotnet/tools"
 # fi
 
 dotnet tool install --global dotnet-ef
+
+export DOTNET_ROOT=/usr/share/dotnet
+export PATH="$PATH:/root/.dotnet/tools"
 
 echo "dotnet ef is installed."
 
