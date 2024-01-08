@@ -38,7 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ef", "ef", "{D3B245C0-56F6-
 	ProjectSection(SolutionItems) = preProject
 		development\ef-database-reset.bat = development\ef-database-reset.bat
 		development\ef-migrations-add.bat = development\ef-migrations-add.bat
-		development\ef-migrations-update.bat = development\ef-migrations-update.bat
+		development\ef-migrations-update-local.bat = development\ef-migrations-update-local.bat
+		development\ef-migrations-update.sh = development\ef-migrations-update.sh
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.IntegrationTests", "tests\Application.IntegrationTests\Application.IntegrationTests.csproj", "{0CB9F159-846D-4865-9457-95D85E85E1FA}"

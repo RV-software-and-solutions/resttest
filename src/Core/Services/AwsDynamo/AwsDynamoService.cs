@@ -7,12 +7,10 @@ namespace RestTest.Core.Services.AwsDynamo;
 public class AwsDynamoService : IAwsDynamoService
 {
     private readonly DynamoDBContext _context;
-    private readonly AwsDynamoDbConfiguration _configuration;
 
     public AwsDynamoService(IOptions<AwsDynamoDbConfiguration> configuration)
     {
-        _configuration = configuration.Value;
-        AmazonDynamoDBClient client = new(_configuration.AccessKeyId, _configuration.SecretAccessKey, _configuration.RegionEndpoint);
+        AmazonDynamoDBClient client = new(configuration.Value.RegionEndpoint);
         _context = new DynamoDBContext(client);
     }
 

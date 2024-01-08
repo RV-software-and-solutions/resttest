@@ -6,11 +6,9 @@ public class CreateResourceItemCommandValidator : AbstractValidator<CreateResour
     public CreateResourceItemCommandValidator()
     {
         RuleFor(v => v.Title)
-            .MaximumLength(200)
-            .NotEmpty();
+            .MaximumLength(200);
 
         RuleFor(v => v.Location)
-            .MaximumLength(200)
-            .NotEmpty();
+            .MaximumLength(200);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using RestTest.Application.Common.Models;
 using RestTest.Application.Common.Interfaces;
+using RestTest.Application.Common.Models;
 
 namespace RestTest.Infrastructure.Identity;
 public class IdentityService : IIdentityService
@@ -30,7 +30,7 @@ public class IdentityService : IIdentityService
 
     public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
     {
-        var user = new ApplicationUser
+        ApplicationUser? user = new ApplicationUser
         {
             UserName = userName,
             Email = userName,

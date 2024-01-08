@@ -6,4 +6,5 @@ namespace RestTest.Core.Configuration;
 public class ServiceConfiguration
 {
     public required string Name { get; set; }
+    public required string Environment { get; set; }
 }

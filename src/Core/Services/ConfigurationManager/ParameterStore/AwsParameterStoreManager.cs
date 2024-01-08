@@ -22,7 +22,7 @@ public class AwsParameterStoreManager : IAwsParameterStoreManager
     {
         string parameterStorePath = AwsParameterStorePath;
 
-        AmazonSimpleSystemsManagementClient client = new(_parameterStoreConfiguration.AccessKeyId, _parameterStoreConfiguration.SecretAccessKey, _parameterStoreConfiguration.RegionEndpoint);
+        AmazonSimpleSystemsManagementClient client = new(_parameterStoreConfiguration.RegionEndpoint);
         GetParametersByPathResponse allParameters = await client.GetParametersByPathAsync(new GetParametersByPathRequest()
         {
             Path = parameterStorePath,
@@ -48,5 +48,5 @@ public class AwsParameterStoreManager : IAwsParameterStoreManager
     }
 
     private string AwsParameterStorePath =>
-        $"/{_serviceConfiguration.Name.ToLower()}/{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")!.ToLower()}/";
+        $"/{_serviceConfiguration.Name}/{_serviceConfiguration.Name}/".ToLower();
 }

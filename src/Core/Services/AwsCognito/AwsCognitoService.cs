@@ -20,7 +20,7 @@ public class AwsCognitoService : IAwsCognitoService
     public AwsCognitoService(IOptions<AwsCognitoConfiguration> awsCognitoConfiguration, ILogger<AwsCognitoService> logger)
     {
         Configuration = awsCognitoConfiguration.Value;
-        CognitoIdentityProviderClient = new AmazonCognitoIdentityProviderClient(Configuration.AccessKeyId, Configuration.SecretAccessKey, Configuration.RegionEndpoint);
+        CognitoIdentityProviderClient = new AmazonCognitoIdentityProviderClient(Configuration.RegionEndpoint);
         CognitoUserPool = new CognitoUserPool(awsCognitoConfiguration.Value.UserPoolId, awsCognitoConfiguration.Value.UserPoolClientId, CognitoIdentityProviderClient);
         _logger = logger;
     }

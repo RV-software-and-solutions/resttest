@@ -406,10 +406,6 @@
       "CreateResourceItemCommand": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "title",
-          "location"
-        ],
         "properties": {
           "title": {
             "type": "string",
