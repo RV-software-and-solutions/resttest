@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Web.IntegrationTests.Core;
 
-namespace Web.IntegrationTests;
-
-// This class should not have namespace, so it can be applied to all tests. That is how NUnit works
 [SetUpFixture]
-// ReSharper disable once CheckNamespace
+#pragma warning disable S3903 // Types should be defined in named namespaces
 public class SharedSetup
+#pragma warning restore S3903 // Types should be defined in named namespaces
 {
     private static readonly CustomWebApplicationFactory Factory = new();
     private static IServiceProvider ServiceProvider => Factory.Services;
