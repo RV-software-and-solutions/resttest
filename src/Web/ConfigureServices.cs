@@ -44,6 +44,7 @@ public static class ConfigureServices
             configure.SchemaSettings.SchemaProcessors.Add(fluentValidationSchemaProcessor);
 
             configure.Title = "RestTest API";
+            configure.Description = "RestTest playground";
             configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
             {
                 Type = OpenApiSecuritySchemeType.ApiKey,

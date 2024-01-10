@@ -39,28 +39,44 @@ public static class ConfigureServices
     public static IServiceCollection LoadAwsDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         IConfigurationSection awsConfigurationSection = configuration.GetSection("aws");
+        string defaultAwsRegion = awsConfigurationSection.GetValue<string>("defaultRegion") ?? string.Empty;
 
         #region AWS S3
 
-        services.Configure<S3Configuration>(s3Configuration => awsConfigurationSection
+        services.Configure<S3Configuration>(awsConfiguration =>
+        {
+            awsConfigurationSection
             .GetSection(typeof(S3Configuration).GetAttribute<ConfigurationAttribute>().Key)
-            .Bind(s3Configuration));
+            .Bind(awsConfiguration);
+
+            awsConfiguration.SetAwsRegion(defaultAwsRegion);
+        });
 
         #endregion
 
         #region AWS Parameter store
 
-        services.Configure<AwsParameterStoreConfiguration>(parameterStoreConfiguration => awsConfigurationSection
-            .GetSection(typeof(AwsParameterStoreConfiguration).GetAttribute<ConfigurationAttribute>().Key)
-            .Bind(parameterStoreConfiguration));
+        services.Configure<AwsParameterStoreConfiguration>(awsConfiguration =>
+        {
+            awsConfigurationSection
+                .GetSection(typeof(AwsParameterStoreConfiguration).GetAttribute<ConfigurationAttribute>().Key)
+                .Bind(awsConfiguration);
+
+            awsConfiguration.SetAwsRegion(defaultAwsRegion);
+        });
 
         #endregion
 
         #region AWS cognito
 
-        services.Configure<AwsCognitoConfiguration>(awsCognitoConfiguration => awsConfigurationSection
+        services.Configure<AwsCognitoConfiguration>(awsConfiguration =>
+        {
+            awsConfigurationSection
             .GetSection(typeof(AwsCognitoConfiguration).GetAttribute<ConfigurationAttribute>().Key)
-            .Bind(awsCognitoConfiguration));
+            .Bind(awsConfiguration);
+
+            awsConfiguration.SetAwsRegion(defaultAwsRegion);
+        });
 
         services.AddSingleton<IAwsCognitoService, AwsCognitoService>();
 
@@ -68,9 +84,14 @@ public static class ConfigureServices
 
         #region AWS DynamoDb
 
-        services.Configure<AwsDynamoDbConfiguration>(awsDynamoDbConfiguration => awsConfigurationSection
+        services.Configure<AwsDynamoDbConfiguration>(awsConfiguration =>
+        {
+            awsConfigurationSection
             .GetSection(typeof(AwsDynamoDbConfiguration).GetAttribute<ConfigurationAttribute>().Key)
-            .Bind(awsDynamoDbConfiguration));
+            .Bind(awsConfiguration);
+
+            awsConfiguration.SetAwsRegion(defaultAwsRegion);
+        });
 
         services.AddSingleton<IAwsDynamoService, AwsDynamoService>();
 

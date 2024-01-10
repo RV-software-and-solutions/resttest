@@ -35,7 +35,7 @@
       "serviceBasePath": null,
       "serviceSchemes": [],
       "infoTitle": "RestTest API",
-      "infoDescription": null,
+      "infoDescription": "RestTest playground",
       "infoVersion": "1.0.0",
       "documentTemplate": null,
       "documentProcessorTypes": [],

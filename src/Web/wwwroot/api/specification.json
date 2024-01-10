@@ -3,6 +3,7 @@
   "openapi": "3.0.0",
   "info": {
     "title": "RestTest API",
+    "description": "RestTest playground",
     "version": "1.0.0"
   },
   "paths": {
